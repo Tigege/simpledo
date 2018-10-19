@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,26 +23,33 @@ public class TraceListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.traceList = traceList;
     }
 
-    @Override
+    @Override  //传入布局文件
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(inflater.inflate(R.layout.item_trace, parent, false));
     }
 
-    @Override
+    @Override  //滚动到时执行
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder itemHolder = (ViewHolder) holder;
         if (getItemViewType(position) == TYPE_TOP) {
             // 第一行头的竖线不显示
             itemHolder.tvTopLine.setVisibility(View.INVISIBLE);
-            // 字体颜色加深
+
+            // 字体颜色加深的
             itemHolder.tvAcceptTime.setTextColor(0xff555555);
             itemHolder.tvAcceptStation.setTextColor(0xff555555);
-            itemHolder.tvDot.setBackgroundResource(R.mipmap.ic_launcher);
+
+            //设置时间线中间图片
+            itemHolder.tvDot.setBackgroundResource(R.mipmap.editpic);
         } else if (getItemViewType(position) == TYPE_NORMAL) {
             itemHolder.tvTopLine.setVisibility(View.VISIBLE);
+
+            //字体颜色
             itemHolder.tvAcceptTime.setTextColor(0xff999999);
             itemHolder.tvAcceptStation.setTextColor(0xff999999);
-            itemHolder.tvDot.setBackgroundResource(R.mipmap.ic_launcher);
+
+            //设置时间线中间图片
+            itemHolder.tvDot.setBackgroundResource(R.mipmap.editpic);
         }
 
         itemHolder.bindHolder(traceList.get(position));
@@ -60,6 +69,9 @@ public class TraceListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public  class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView leftTime;
+
         private TextView tvAcceptTime, tvAcceptStation;
         private TextView tvTopLine, tvDot;
         public ViewHolder(View itemView) {
@@ -68,6 +80,8 @@ public class TraceListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvAcceptStation = (TextView) itemView.findViewById(R.id.tvAcceptStation);
             tvTopLine = (TextView) itemView.findViewById(R.id.tvTopLine);
             tvDot = (TextView) itemView.findViewById(R.id.tvDot);
+
+            leftTime=(TextView)itemView.findViewById(R.id.LeftTime);
         }
 
         public void bindHolder(Trace trace) {
