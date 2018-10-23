@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -30,11 +31,34 @@
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
                 <!--时间线-->
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rvTrace"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:overScrollMode="never"/>-->
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvTrace"
+                    android:id="@+id/items"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/input_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:hint="我想..."/>
+                    <Button
+                        android:id="@+id/send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发送"/>
+                </LinearLayout>
 
             </LinearLayout>
 
